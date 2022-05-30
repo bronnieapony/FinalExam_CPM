@@ -1,27 +1,12 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FinalExam_CPM
 {
     internal class Class1
     {
         IWebDriver driver;
-        string Email = "bronnie@email.com";
-        string Password = "Password1";
-        string ArticleTitle = "New Article";
-        string ArticleDescription = "Description of new Article";
-        string ArticleBody = "Creating a new article test";
-        string ArticleTag = "Cthulhu";
-        string SettingsBio = "I am working on my final exam for automation";
-        string CommentText = "Check it out https://agilethought.com/careers/";
-
 
         [SetUp]
         public void Setup()
@@ -35,6 +20,8 @@ namespace FinalExam_CPM
         [Test]
         public void SignInMethod()
         {
+            string Email = "bronnie@email.com";
+            string Password = "Password1";
             driver.FindElement(By.CssSelector("a[href*='/login']")).Click();
             driver.FindElement(By.XPath("//input[@formcontrolname='email']")).SendKeys(Email);
             driver.FindElement(By.XPath("//input[@formcontrolname='password']")).SendKeys(Password);
@@ -53,6 +40,10 @@ namespace FinalExam_CPM
         [Test, Order(0), Category("Smoke Test")]
         public void CreatePost()
         {
+            string ArticleTitle = "New Article";
+            string ArticleDescription = "Description of new Article";
+            string ArticleBody = "Creating a new article test";
+            string ArticleTag = "Cthulhu";
             SignInMethod();
             driver.FindElement(By.CssSelector("a[href*='/editor']")).Click();
             driver.FindElement(By.XPath("//input[@formcontrolname='title']")).SendKeys(ArticleTitle);
@@ -80,6 +71,7 @@ namespace FinalExam_CPM
         [Test, Order(4), Category("Smoke Test")]
         public void CreateComment()
         {
+            string CommentText = "Check it out https://agilethought.com/careers/";
             SignInMethod();
             driver.FindElement(By.XPath("//a[contains(text(),'pixel')]")).Click();
             driver.FindElement(By.CssSelector("a[href*='/article/dolorem-in-saepe-illum-esse-perspiciatis-accusamus-voluptas-et-a74i6g']")).Click();
